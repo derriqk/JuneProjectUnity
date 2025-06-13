@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d09099523be264b84d447012f8d728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToChangeTo: Scene1Test
+  sceneToChangeTo: TicTacToe
 --- !u!61 &1417655942
 BoxCollider2D:
   m_ObjectHideFlags: 0
