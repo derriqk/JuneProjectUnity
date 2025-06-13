@@ -6,6 +6,7 @@ public class CellClick : MonoBehaviour
     public GameObject oPrefab; // o prefab
     public TicTacToe board; // lets it reference the board script
     public bool isOccupied = false; // initially not occupied
+    public int used; // 0 is o, 1 is x
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +38,10 @@ public class CellClick : MonoBehaviour
                     // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
                     GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
                     newObject.transform.SetParent(transform);
+                    newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
                 }
+                used = 1; // mark as X
+                board.occupied++; // increment occupied count
             }
             else // o turn
             {
@@ -49,7 +53,10 @@ public class CellClick : MonoBehaviour
                     // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
                     GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
                     newObject.transform.SetParent(transform);
+                    newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
                 }
+                used = 0; // mark as O
+                board.occupied++; // increment occupied count
             }
             isOccupied = true; // mark cell occupied
             board.isXTurn = !board.isXTurn; // toggle turn
@@ -58,22 +65,5 @@ public class CellClick : MonoBehaviour
         {
             Debug.Log("Cell is already occupied or it's not X's turn.");
         }
-    }
-
-    public void click()
-    {
-        GameObject prefabToInstantiate = null;
-
-        prefabToInstantiate = oPrefab;
-        // then spawn the prefab at the cell's position
-        if (prefabToInstantiate != null)
-        {
-        // test
-        // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
-        GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
-        newObject.transform.SetParent(transform);
-        }
-        board.isXTurn = !board.isXTurn; // toggle turn
-        isOccupied = true; // mark cell occupied
     }
 }
