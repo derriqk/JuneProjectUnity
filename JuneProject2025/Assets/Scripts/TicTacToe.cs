@@ -6,6 +6,7 @@ public class TicTacToe : MonoBehaviour
     private GameObject[] gridCells; // Array to hold the grid cells
     public SpriteRenderer xPrefab; // Prefab for X
     public SpriteRenderer oPrefab; // Prefab for O
+    public bool isXTurn = true; // by default X starts first and player is always X
     void Start()
     {
         gridCells = new GameObject[9]; // 9 cells
@@ -19,10 +20,13 @@ public class TicTacToe : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cell" + i + " found successfully.");
+                // Debug.Log("Cell" + i + " found successfully.");
+                // initialize the cell components
                 gridCells[i].AddComponent<CellClick>(); // add CellClick component to each cell
+                gridCells[i].AddComponent<BoxCollider2D>(); // add 2D collider to each cell
                 gridCells[i].GetComponent<CellClick>().xPrefab = xPrefab.gameObject; // assign xPrefab
                 gridCells[i].GetComponent<CellClick>().oPrefab = oPrefab.gameObject; // assign oPrefab
+                gridCells[i].GetComponent<CellClick>().board = this; // assign the TicTacToe board reference
             }
         }
     }
