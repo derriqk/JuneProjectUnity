@@ -34,7 +34,37 @@ public class TicTacToe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (isXTurn)
+        {
+            // it will wait for a mouse input so that isXTurn will change to false after a move
+        }
+        else
+        {
+            Bot(); // then it is bot's turn so it will call the Bot method
+        }
+        checkWin(); // check for win condition
     }
+
+    void Bot() // will select a random cell to play as O
+    {
+        int randInt = Random.Range(0, 9);
+        if (gridCells[randInt] != null && !gridCells[randInt].GetComponent<CellClick>().isOccupied)
+        {
+            // Debug.Log("Bot playing at cell: " + randInt);
+            gridCells[randInt].GetComponent<CellClick>().OnMouseDown(); // simulate a click on the cell
+            isXTurn = true; // toggle back to X's turn
+        }
+        else
+        {
+            // if occupied, just call bot again
+            Bot();
+        }
+    }
+
+    void checkWin()
+    {
+        // to do
+    }
+    
 
 }
