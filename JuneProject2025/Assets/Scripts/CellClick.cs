@@ -23,47 +23,53 @@ public class CellClick : MonoBehaviour
     {
         // testing
         // Debug.Log("Cell clicked: " + gameObject.name + ", isOccupied: " + isOccupied);
-
-        if (!isOccupied) // check if the cell is not occupied and it's X's turn
+        if (board.playing)
         {
-            GameObject prefabToInstantiate = null;
+            if (!isOccupied) // check if the cell is not occupied and it's X's turn
+            {
+                GameObject prefabToInstantiate = null;
 
-            if (board.isXTurn)
-            {
-                prefabToInstantiate = xPrefab;
-                // then spawn the prefab at the cell's position
-                if (prefabToInstantiate != null)
+                if (board.isXTurn)
                 {
-                    // test
-                    // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
-                    GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
-                    newObject.transform.SetParent(transform);
-                    newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
+                    prefabToInstantiate = xPrefab;
+                    // then spawn the prefab at the cell's position
+                    if (prefabToInstantiate != null)
+                    {
+                        // test
+                        // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
+                        GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
+                        newObject.transform.SetParent(transform);
+                        newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
+                    }
+                    used = 1; // mark as X
+                    board.occupied++; // increment occupied count
                 }
-                used = 1; // mark as X
-                board.occupied++; // increment occupied count
-            }
-            else // o turn
-            {
-                prefabToInstantiate = oPrefab;
-                // then spawn the prefab at the cell's position
-                if (prefabToInstantiate != null)
+                else // o turn
                 {
-                    // test
-                    // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
-                    GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
-                    newObject.transform.SetParent(transform);
-                    newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
+                    prefabToInstantiate = oPrefab;
+                    // then spawn the prefab at the cell's position
+                    if (prefabToInstantiate != null)
+                    {
+                        // test
+                        // Debug.Log("Instantiating prefab: " + prefabToInstantiate.name);
+                        GameObject newObject = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
+                        newObject.transform.SetParent(transform);
+                        newObject.transform.localPosition = new Vector3(0, 0, -1f); // make it forward in Z axis
+                    }
+                    used = 0; // mark as O
+                    board.occupied++; // increment occupied count
                 }
-                used = 0; // mark as O
-                board.occupied++; // increment occupied count
+                isOccupied = true; // mark cell occupied
+                board.isXTurn = !board.isXTurn; // toggle turn
             }
-            isOccupied = true; // mark cell occupied
-            board.isXTurn = !board.isXTurn; // toggle turn
+            else
+            {
+                Debug.Log("Cell is already occupied or it's not X's turn.");
+            }
         }
         else
         {
-            Debug.Log("Cell is already occupied or it's not X's turn.");
+            Debug.Log("Game is over");
         }
     }
 }
