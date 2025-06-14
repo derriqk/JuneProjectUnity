@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a82eb837752d7124a927cf87e1befb3d
+guid: faba27fe4fa5e7549b5701a49e4351b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8427914178813482135
-    second: tictactoePlay_0
+      213: 1208040086343421634
+    second: image_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tictactoePlay_0
+      name: image_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 69
-        width: 1154
-        height: 242
+        x: 0
+        y: 0
+        width: 2044
+        height: 1074
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 794d7a9ea47f5f470800000000000000
-      internalID: 8427914178813482135
+      spriteID: 2ce8eecde02d3c010800000000000000
+      internalID: 1208040086343421634
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tictactoePlay_0: 8427914178813482135
+      image_0: 1208040086343421634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

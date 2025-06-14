@@ -9,7 +9,7 @@ public class TicTacToe : MonoBehaviour
     public bool isXTurn = true; // by default X starts first and player is always X
     public int occupied = 0; // count of occupied cells
 
-    bool playing = true;
+    public bool playing = true;
     bool winner = false;
     void Start()
     {
@@ -38,18 +38,23 @@ public class TicTacToe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playing) return; // if not playing, end
-
-        if (isXTurn)
+        if (!playing)
         {
-            // it will wait for a mouse input so that isXTurn will change to false after a move
+
         }
         else
         {
-            Bot(); // then it is bot's turn so it will call the Bot method
+            if (isXTurn)
+            {
+                // it will wait for a mouse input so that isXTurn will change to false after a move
+            }
+            else
+            {
+                Bot(); // then it is bot's turn so it will call the Bot method
+            }
+            checkWin(); // check for win condition
+            checkTie(); // check for tie condition
         }
-        checkWin(); // check for win condition
-        checkTie(); // check for tie condition
     }
 
     void Bot() // will select a random cell to play as O
